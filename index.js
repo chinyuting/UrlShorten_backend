@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 
+import shortenRoutes from "./src/routes/shorten.js";
 import scrapeRoutes from "./src/routes/scrape.js";
 
 dotenv.config();
@@ -10,6 +11,7 @@ const app = express();
 app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());
 
+app.use("/api", shortenRoutes);
 app.use("/api", scrapeRoutes);
 
 mongoose.connect(process.env.MONGODBURL);
