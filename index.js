@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 
 import shortenRoutes from "./src/routes/shorten.js";
 import scrapeRoutes from "./src/routes/scrape.js";
+import redirectRoutes from "./src/routes/redirect.js";
 
 dotenv.config();
 const app = express();
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use("/api", shortenRoutes);
 app.use("/api", scrapeRoutes);
+app.use("", redirectRoutes);
 
 mongoose.connect(process.env.MONGODBURL);
 
