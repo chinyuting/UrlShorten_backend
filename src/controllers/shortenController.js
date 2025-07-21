@@ -54,3 +54,28 @@ export const shortenUrl = async (req, res) => {
     return res.status(500).json({ error: "伺服器錯誤" });
   }
 };
+
+export const updateUrlActive = async (req, res) => {
+  const { shortCode, isUrlActive } = req.body;
+
+  if (typeof shortCode !== "string" || typeof isUrlActive !== "boolean") {
+    return res.status(400).json({ error: "參數格式錯誤" });
+  }
+
+  try {
+    const updatedUrl = await Url.findOneAndUpdate(
+      { shortCode },
+      { isUrlActive },
+      { new: true }
+    );
+
+    if (!updatedUrl) {
+      return res.status(404).json({ error: "找不到該短網址" });
+    }
+
+    return res.json({ message: "更新成功", updatedUrl });
+  } catch (error) {
+    console.error("更新啟用狀態失敗:", error);
+    return res.status(500).json({ error: "伺服器錯誤" });
+  }
+};
