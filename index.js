@@ -3,10 +3,14 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 
+import scrapeRoutes from "./src/routes/scrape.js";
+
 dotenv.config();
 const app = express();
 app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());
+
+app.use("/api", scrapeRoutes);
 
 mongoose.connect(process.env.MONGODBURL);
 
