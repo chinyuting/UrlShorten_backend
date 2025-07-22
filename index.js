@@ -9,14 +9,14 @@ import redirectRoutes from "./src/routes/redirect.js";
 
 dotenv.config();
 const app = express();
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: `${process.env.BASEURL}` }));
 app.use(express.json());
 
 app.use("/api", shortenRoutes);
 app.use("/api", scrapeRoutes);
 app.use("", redirectRoutes);
 
-mongoose.connect(process.env.MONGODBURL);
+mongoose.connect(`${process.env.MONGODBURL}`);
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB 連線錯誤:"));

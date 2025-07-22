@@ -47,7 +47,7 @@ export const shortenUrl = async (req, res) => {
     });
     await newUrl.save();
 
-    const shortUrl = `http://localhost:5173/${shortCode}`;
+    const shortUrl = `${process.env.BASEURL}/${shortCode}`;
     return res.json({ shortUrl, shortCode });
   } catch (error) {
     console.error("儲存失敗", error);
