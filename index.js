@@ -24,4 +24,5 @@ db.once("open", () => {
   console.log("已連接到 MongoDB");
 });
 
-app.listen(3001, () => console.log("Server on http://localhost:3001"));
+// app.listen(3001, () => console.log("Server on http://localhost:3001"));
+export default app;
