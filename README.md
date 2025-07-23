@@ -41,6 +41,19 @@ BASEURL=前端網址
 
 
 #### 3. 本機啟動專案
+若要在本機環境（如使用 Node.js）直接啟動伺服器，請依下列步驟操作：
+
+1. 在`index.js`檔案中**加入**以下程式碼：
+```js
+app.listen(3001, () => console.log("Server on http://localhost:3001"));
+```
+
+2. **移除**這行程式碼（僅在 Vercel 等部署平台需要）:
+```js
+export default app;
+```
+
+3. 啟動伺服器:
 ```bash
 npm run dev
 ```
